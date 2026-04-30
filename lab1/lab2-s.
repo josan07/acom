@@ -1,0 +1,34 @@
+.data
+width: .word LED_MATRIX_0_WIDTH
+height: .word LED_MATRIX_0_HEIGHT
+base: .word LED_MATRIX_0_BASE
+
+
+
+
+.text
+
+li x5, 0x00FF00
+li x6, 0xFF0000
+
+la x7, width
+lwu x7, 0(x7)
+
+la x8, height
+lwu x8, 0(x8)
+
+la x9, base
+lwu x9, 0(x9)
+
+sw x5, 0(x9)
+
+li x10, 0 #iterador de linhas
+
+
+beq x10, x7, loop
+
+loop:
+    sw x5, 0(x9)
+    addi x9, x9, 40
+
+    j loop

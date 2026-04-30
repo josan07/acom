@@ -6,12 +6,20 @@ res: .zero 64
 
 .text
 
-la x5, res
-ld x5,0(x5)
+la x7, res
+ld x7,0(x7)
 
-addi x5, x5, 20
-slli, x5, x5, 2
-addi, x5, x5, -14
+lw x6,a
+add x5, x5, x6
+
+lb x6, c
+mul x5, x5, x6
+
+lh x6, b
+add, x5, x5, x6
+
 srli, x5, x5, 1
 
-sd x5, 0(x5)
+sw x5, 0(x7)
+
+loop: j loop

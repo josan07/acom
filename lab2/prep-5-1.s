@@ -25,11 +25,22 @@ lbu x9, 0(x9)
 li x10 0x00ffff00 #yellow
 li x12 0x00000000 #blk
 
+mul x13 x9 x8 #n leds
+li x14 0 #i
+
 loop:
+    
+beq x14 x13 restart
 sw x10 0(x11)
 addi x11 x11 4 
+addi x14 x14 1
 sw x12 -4(x11)
 j loop 
+
+restart:
+mv x11 x7
+li x14 0 
+j loop
 
 
     

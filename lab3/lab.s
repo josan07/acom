@@ -14,7 +14,7 @@ lw a5 N
 la a6 v
 
 call OddSeq
-end:
+
 li a7 10
 ecall
 
@@ -23,8 +23,8 @@ ecall
 OddSeq:
     #inicio pilha
     
-    addi sp sp -16
-    sw s1 12(sp) # first
+    addi sp sp -20
+    sw ra , 16(sp)
     sw s2 8(sp) # last
     sw s3 4(sp) 
     sw s4 0(sp)  
@@ -72,8 +72,9 @@ for_tail:
     
     mv a4 s4
     lw s4 0(sp) # max 
-    addi sp sp 16
-    j end 
+    sw ra , 16(sp) 
+    addi sp sp 20
+    ret
     
 
 
